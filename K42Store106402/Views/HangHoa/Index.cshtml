@@ -1,0 +1,24 @@
+﻿@model IEnumerable<K42Store106402.Models.HangHoaViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<style>
+    .hanghoa {
+        height: 250px;border-radius: 5px;text-align: center;
+    }
+        .hanghoa:hover {
+            border: 1px solid blue;
+        }
+    .hanghoa img{ height: 180px;}
+</style>
+<div class="row">
+    @foreach (var hh in Model)
+    {
+        <div class="col-md-4 hanghoa">
+            <img src="~/Hinh/HangHoa/@hh.Hinh"/>
+            <h2>@hh.TenHH</h2>
+            <div>@hh.GiaBan </div>
+        </div>
+    }
+</div>
