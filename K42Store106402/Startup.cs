@@ -36,6 +36,10 @@ namespace K42Store106402
             services.AddDbContext<MyeStoreContext>(opt => opt.UseSqlServer(
                 Configuration.GetConnectionString("MyEstore")));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddSession(option =>
+            {
+                option.IdleTimeout = TimeSpan.FromMinutes(5);
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -54,7 +58,7 @@ namespace K42Store106402
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
-
+            app.UseSession();
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

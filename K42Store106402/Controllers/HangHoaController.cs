@@ -50,5 +50,16 @@ namespace K42Store106402.Controllers
                 });
             return View(data);
         }
+
+        public IActionResult ChiTiet(int? id)
+        {
+            HangHoa hh = db.HangHoa.SingleOrDefault(p => p.MaHh == id);
+            if (id == null)
+            {
+                return RedirectToAction("Index", "HangHoa");
+            }
+
+            return View(hh);
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Http
+<!DOCTYPE html>
 
 <html>
 <head>
@@ -36,16 +37,23 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tài khoản <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="">Đăng nhập</a></li>
-                            <li><a href="">Quên mật khẩu</a></li>
-                            <li><a href="">Đăng ký thành viên</a></li>
-                            <li class="divider"></li>
-                            <li><a href="">Đăng xuất</a></li>
-                            <li><a href="">Đổi mật khẩu</a></li>
-                            <li><a href="">Cập nhật hồ sơ</a></li>
-                            <li class="divider"></li>
-                            <li><a href="">Đơn hàng</a></li>
-                            <li><a href="">Hàng đã mua</a></li>
+                            @if (Context.Session.Get("MaKH") == null)
+                            {
+                                <li><a asp-controller="KhachHang" asp-action="Login">Đăng nhập</a></li>
+                                <li><a href="">Quên mật khẩu</a></li>
+                                <li><a href="">Đăng ký thành viên</a></li>
+                            }
+                            else
+                            {
+                                KhachHang kh = Context.Session.Get<KhachHang>("MaKH");
+                                <li><a asp-controller="KhachHang" asp-action="Profile">Xin chào @kh.HoTen</a></li>
+                                <li><a asp-controller="KhachHang" asp-action="Logout">Đăng xuất</a></li>
+                                <li><a href="">Đổi mật khẩu</a></li>
+                                <li><a href="">Cập nhật hồ sơ</a></li>
+                                <li class="divider"></li>
+                                <li><a href="">Đơn hàng</a></li>
+                                <li><a href="">Hàng đã mua</a></li>
+                            }
                         </ul>
                     </li>
                 </ul>

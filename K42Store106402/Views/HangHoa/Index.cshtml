@@ -6,19 +6,24 @@
 <style>
     .hanghoa {
         height: 250px;border-radius: 5px;text-align: center;
+        position: relative;
     }
         .hanghoa:hover {
             border: 1px solid blue;
         }
     .hanghoa img{ height: 180px;}
+    .giaban{ position: absolute; bottom: 5px; right: 5px; font-size: large; color: blue;}
 </style>
 <div class="row">
     @foreach (var hh in Model)
     {
         <div class="col-md-4 hanghoa">
-            <img src="~/Hinh/HangHoa/@hh.Hinh"/>
-            <h2>@hh.TenHH</h2>
-            <div>@hh.GiaBan </div>
+            <a asp-action="ChiTiet" asp-controller="HangHoa" 
+               asp-route-id="@hh.MaHH">
+                <img src="~/Hinh/HangHoa/@hh.Hinh" />
+            </a>
+            <h3>@hh.TenHH</h3>
+            <div class="giaban">@hh.GiaBan </div>
         </div>
     }
 </div>

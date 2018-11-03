@@ -1,0 +1,23 @@
+﻿@model K42Store106402.Models.HangHoa
+@{
+    ViewData["Title"] = $"{Model.TenHh} - {Model.DonGia}";
+}
+
+<div>
+    <h3>@Model.TenHh</h3>
+    <hr />
+    <div class="row">
+        <div class="col-md-3 text-center">
+            <img src="~/Hinh/HangHoa/@Model.Hinh"/><br/>
+            <h4>@Model.DonGia</h4>
+            <a asp-action="AddToCart" asp-controller="Cart"
+               asp-route-mahh="@Model.MaHh" class="btn btn-primary">
+                Mua
+            </a>
+        </div>
+        <div class="col-md-9">
+            @Model.MoTa
+        </div>
+    </div>
+</div>
+
