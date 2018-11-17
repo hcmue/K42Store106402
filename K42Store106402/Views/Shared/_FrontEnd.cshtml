@@ -10,12 +10,27 @@
     <link href="~/css/nhatnghe.css" rel="stylesheet" />
     <script src="~/lib/jquery/dist/jquery.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+    <script>
+        $(function() {
+            setInterval(function() {
+                $.ajax({
+                    url: "/Ajax/ServerTime",
+                    success: function(response) {
+                        $("#dongHo").html(response);
+                    }
+                });
+            }, 1000);
+        });
+    </script>
 </head>
 <body>
     <div class="container">
         <header class="nn-header row">
             <h1 class="nn-company">HCMUE - K42</h1>
-            <h5 class="nn-slogan">All in once technology programming</h5>
+            <h5 class="nn-slogan">
+                All in once technology programming
+                <span id="dongHo"></span>
+            </h5>
             <img class="nn-logo" src="~/images/header-object.png" />
         </header>
 

@@ -1,0 +1,20 @@
+﻿@model IEnumerable<K42Store106402.Models.HangHoaViewModel>
+
+<table class="table table-condensed table-striped">
+    <thead>
+        <tr>
+            <th>Tên</th>
+            <th>Giá</th>
+            <th>Hình</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>@item.TenHH</td>
+            <td>@item.GiaBan.ToString("#,##0") đ</td>
+            <td><img src="~/Hinh/HangHoa/@item.Hinh" height="80"/></td>
+        </tr>
+}
+    </tbody>
+</table>

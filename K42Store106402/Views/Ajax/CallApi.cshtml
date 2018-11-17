@@ -1,0 +1,48 @@
+﻿
+@{
+    ViewData["Title"] = "CallApi";
+}
+
+<h2>DEMO API Loại</h2>
+<div class="form-group">
+    <input id="txtMaLoai" placeholder="Mã loại"/>
+    <input id="txtTenLoai" placeholder="Tên loại"/>
+    <input id="txtMoTa" placeholder="Mô tả"/>
+    <input id="btnThem" value="Thêm" type="button"/>
+    <input id="btnSua" value="Cập nhật" type="button"/>
+</div>
+<script>
+    $(function() {
+        $("#btnThem").click(function() {
+            var loai = new Object();
+            loai.tenLoai = $("#txtTenLoai").val();
+            loai.moTa = $("#txtMoTa").val();
+            $.ajax({
+                url: "/api/Loai",
+                data: JSON.stringify(loai),
+                contentType: "application/json",
+                method: "POST",
+                success: function(data) {
+                    alert("Vừa tạo loại: " + data.tenLoai + " - mã " + data.maLoai);
+                }
+            });
+        });
+
+        $("#btnSua").click(function () {
+            var loai = new Object();
+            loai.maLoai = $("#txtMaLoai").val();
+            loai.tenLoai = $("#txtTenLoai").val();
+            loai.moTa = $("#txtMoTa").val();
+            $.ajax({
+                url: "/api/Loai/" + loai.maLoai,
+                data: JSON.stringify(loai),
+                contentType: "application/json",
+                method: "PUT",
+                success: function (data) {
+                    alert("Thành công");
+                }
+            });
+        });
+
+    });
+</script>

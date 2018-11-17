@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Tìm kiếm</h2>
+<input id="txtSearch" placeholder="Nhập từ khóa"/>
+<div id="results"></div>
+<script>
+    $("#txtSearch").keyup(function() {
+        $.ajax({
+            url: "/Ajax/Search",
+            data: { keyword: $(this).val() },
+            type: "GET",
+            success: function(response) {
+                $("#results").html(response);
+            }
+        });
+    });
+</script>
